@@ -52,6 +52,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * @property Product_model Product_model
  * @property Seller_order_model Seller_order_model
  * @property Needs_model Needs_model
+ * @property User_model User_model
  */
 class CI_Controller {
 
