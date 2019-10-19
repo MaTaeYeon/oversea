@@ -11,6 +11,9 @@ class Seller extends Api_Controller {
         parent::__construct();
     }
 
+    /**
+     * 获取我的订单列表
+     */
     public function get_my_order(){
         $uid = $this->get_params("uid");
         $status = $this->get_params("status", 0);
@@ -42,6 +45,9 @@ class Seller extends Api_Controller {
         $this->response_success($needs_list);
     }
 
+    /**
+     * 接单
+     */
     public function accept_needs() {
         $did = $this->get_params("did");
         $uid = $this->get_params('uid');
@@ -59,6 +65,20 @@ class Seller extends Api_Controller {
             $this->response_success(null, "接单成功");
         } else {
             $this->response_success(null, "接单失败");
+        }
+    }
+
+    /**
+     * 更新订单状态
+     */
+    public function update_order_status() {
+        $id = $this->get_params("id");
+        $status = $this->get_params("status");
+        $this->load->model("Seller_order_model");
+        if ($this->Seller_order_model->update_by_where(['id' => $id], ['status' => $status])) {
+            $this->response_success(null, "成功");
+        } else {
+            $this->response_success(null, "失败");
         }
     }
 }
