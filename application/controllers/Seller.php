@@ -47,11 +47,13 @@ class Seller extends Api_Controller {
         $uid = $this->get_params('uid');
         $sid = $this->get_params("sid");
         $this->load->model("Seller_order_model");
+        $this->load->model("Needs_model");
 
         $data = array();
         $data['did'] = $did;
         $data['uid'] = $uid;
         $data['sid'] = $sid;
+        $this->Needs_model->update_by_where(['id' => $did], ['status' => 1]);
         $result = $this->Seller_order_model->add($data);
         if ($result) {
             $this->response_success(null, "接单成功");
