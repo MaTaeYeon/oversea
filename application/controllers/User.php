@@ -30,6 +30,6 @@ class User extends Api_Controller
         if ($user->type == 2) {
             $user->order_num = $this->Seller_order_model->count_by_where(['sid' => $uid]);
         }
-        $this->response_success($needs_list);
+        $this->response_success($user);
     }
 }
