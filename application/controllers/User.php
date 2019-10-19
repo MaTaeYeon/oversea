@@ -28,8 +28,9 @@ class User extends Api_Controller
             $this->response_error("用户信息不存在");
         }
         if ($user->type == 2) {
-            $user->order_num = $this->Seller_order_model->count_by_where(['sid' => $uid]);
         }
+        $user->order_num = $this->Seller_order_model->count_by_where(['sid' => $uid]);
+        $user->needs_num = $this->Needs_model->count_by_where(['uid' => $uid]);
         $this->response_success($user);
     }
 }
