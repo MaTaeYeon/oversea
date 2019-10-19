@@ -21,7 +21,7 @@ class BB_Model extends CI_Model {
     }
 
     public function get_all() {
-        return $this->execute('SELECT * FROM ' . $this->get_table_name() . ' limit 1000');
+        return $this->execute('SELECT * FROM ' . $this->get_table_name() . ' limit 1000 order by id desc');
     }
 
     public function get_by_id($id) {
