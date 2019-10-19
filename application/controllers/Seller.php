@@ -41,6 +41,8 @@ class Seller extends Api_Controller {
             if (isset($user_maps[$seller_order->sid])) {
                 $need->seller = $user_maps[$seller_order->sid];
             }
+            $need->price_seller = $seller_order_did_maps[$need->id]->price_seller;
+            $need->status = $seller_order_did_maps[$need->id]->status;
         }
         $this->response_success($needs_list);
     }
@@ -66,6 +68,8 @@ class Seller extends Api_Controller {
         $data['did'] = $did;
         $data['uid'] = $uid;
         $data['sid'] = $sid;
+        $data['price'] = $needs->price;
+        $data['price_seller'] = $needs->price * 1.1;
         $this->Needs_model->update_by_where(['id' => $did], ['status' => 1]);
         $result = $this->Seller_order_model->add($data);
         if ($result) {

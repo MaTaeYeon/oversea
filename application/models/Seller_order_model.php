@@ -26,6 +26,6 @@ class Seller_order_model extends BB_Model {
         if (!is_numeric($uid) || !is_numeric($status)) {
             return array();
         }
-        return $this->execute("SELECT * FROM " . $this->get_table_name() . " WHERE `uid` = {$uid} and `status` = {$status}");
+        return $this->execute("SELECT * FROM " . $this->get_table_name() . " WHERE `uid` = {$uid}");
     }
 }
