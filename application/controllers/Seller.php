@@ -43,6 +43,7 @@ class Seller extends Api_Controller {
             }
             $need->price_seller = $seller_order_did_maps[$need->id]->price_seller;
             $need->status = $seller_order_did_maps[$need->id]->status;
+            $need->oid = $seller_order_did_maps[$need->id]->id;
         }
         $this->response_success($needs_list);
     }
@@ -61,13 +62,14 @@ class Seller extends Api_Controller {
         if (empty($needs)) {
             $this->response_error("需求不存在");
         }
-        if ($needs->credit > 100) {
-            $this->response_error("信誉分不满足，此需求信誉分要求达到" . $needs->credit);
+        if ($needs->credit >= 100) {
+            //$this->response_error("信誉分不满足，此需求信誉分要求达到" . $needs->credit);
         }
         $data = array();
         $data['did'] = $did;
         $data['uid'] = $uid;
         $data['sid'] = $sid;
+        $data['status'] = 1;
         $data['price'] = $needs->price;
         $data['price_seller'] = $needs->price * 1.1;
         $this->Needs_model->update_by_where(['id' => $did], ['status' => 1]);
