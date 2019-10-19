@@ -157,7 +157,7 @@ class CI_Controller {
 
     function response_json($data, $success = FALSE, $message = "") {
         header("content:application/json;chartset=uft-8");
-        header('Access-Control-Allow-Origin:47.92.121.225');
+        header('Access-Control-Allow-Origin:*');
         $obj = new stdClass();
         $obj->success = $success;
         $obj->message = $message;
@@ -168,7 +168,7 @@ class CI_Controller {
 
     function response_success($data, $message = "") {
         header("content:application/json;chartset=uft-8");
-        header('Access-Control-Allow-Origin:47.92.121.225');
+        header('Access-Control-Allow-Origin:*');
         $obj = new stdClass();
         $obj->success = TRUE;
         $obj->message = $message;
@@ -179,7 +179,7 @@ class CI_Controller {
 
     function response_error($message = "", $data = []) {
         header("content:application/json;chartset=uft-8");
-        header('Access-Control-Allow-Origin:47.92.121.225');
+        header('Access-Control-Allow-Origin:*');
         $obj = new stdClass();
         $obj->success = FALSE;
         $obj->message = $message;
