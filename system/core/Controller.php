@@ -50,6 +50,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * @author		EllisLab Dev Team
  * @link		https://codeigniter.com/user_guide/general/controllers.html
  * @property Product_model Product_model
+ * @property Seller_order_model Seller_order_model
  * @property Needs_model Needs_model
  */
 class CI_Controller {
@@ -128,8 +129,11 @@ class CI_Controller {
         return $ary;
     }
 
-    function get_params($name) {
+    function get_params($name, $default = null) {
         $value = $this->input->get($name);
+        if (is_null($value)) {
+            return $default;
+        }
         return $value;
     }
 
