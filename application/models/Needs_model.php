@@ -17,4 +17,12 @@ class Needs_model extends BB_Model {
         return 'needs';
     }
 
+    public function get_by_location($id) {
+        if (!is_numeric($id)) {
+            return FALSE;
+        }
+
+        return $this->execute('SELECT * FROM ' . $this->get_table_name() . ' WHERE `location` = ' . $id);
+    }
+
 }
