@@ -73,4 +73,12 @@ class CI_Model {
 		return get_instance()->$key;
 	}
 
+    public function execute($sql) {
+        return $this->db->query($sql)->result();
+    }
+
+    public function execute_delete_by_id($table, $id) {
+        $this->db->delete($table, ['id' => $id]);
+    }
+
 }
