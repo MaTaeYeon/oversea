@@ -29,12 +29,25 @@ class Needs extends Api_Controller {
 
     }
 
+    public function get_one(){
+        $id = $this->get_params("id");
+        $this->load->model("Needs_model");
+        $ret = $this->Needs_model->get_by_id($id);
+        $this->response_success($ret);
+    }
+
+    /**
+     * 需求列表
+     */
     public function get_all(){
         $this->load->model("Needs_model");
         $ret = $this->Needs_model->get_all();
         $this->response_success($ret);
     }
 
+    /**
+     * 搜索
+     */
     public function search(){
         $location = $this->get_params("location");
         $this->load->model("Needs_model");
