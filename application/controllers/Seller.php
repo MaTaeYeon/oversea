@@ -12,6 +12,8 @@ class Seller extends Api_Controller {
     }
 
     public function get_my_order(){
+        ini_set("display_errors", "On");
+        ini_set("error_reporting", E_ALL);
         $uid = $this->get_params("uid");
         $status = $this->get_params("status", 0);
         $this->load->model("Seller_order_model");
