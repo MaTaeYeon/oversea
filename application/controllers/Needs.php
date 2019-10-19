@@ -25,8 +25,8 @@ class Needs extends Api_Controller {
         $data["des"] = $this->post_params("des","描述");
         $data["pic"] = $this->post_params("pic","");
         $data["spec"] = $this->post_params("spec","");
-
-        $data["closing_date"] = time();
+        $data["closing_date"] = $this->post_params("closing_date","");
+        $data["create"] = time();
 
         $this->load->model("Needs_model");
         $ret = $this->Needs_model->add($data);
