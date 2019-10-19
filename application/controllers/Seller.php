@@ -62,7 +62,7 @@ class Seller extends Api_Controller {
             $this->response_error("需求不存在");
         }
         if ($needs->credit >= 100) {
-            $this->response_error("信誉分不满足，此需求信誉分要求达到" . $needs->credit);
+            //$this->response_error("信誉分不满足，此需求信誉分要求达到" . $needs->credit);
         }
         $data = array();
         $data['did'] = $did;
