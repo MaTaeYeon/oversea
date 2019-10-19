@@ -51,6 +51,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * @link		https://codeigniter.com/user_guide/general/controllers.html
  * @property Product_model Product_model
  * @property Seller_order_model Seller_order_model
+ * @property Needs_model Needs_model
  */
 class CI_Controller {
 
@@ -136,8 +137,11 @@ class CI_Controller {
         return $value;
     }
 
-    function post_params($name) {
+    function post_params($name,$default = "") {
         $value = $this->input->post($name);
+        if(is_null($value)){
+            $value = $default;
+        }
         return $value;
     }
 
