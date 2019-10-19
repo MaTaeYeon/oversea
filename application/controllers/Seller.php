@@ -45,6 +45,9 @@ class Seller extends Api_Controller {
             $need->status = $seller_order_did_maps[$need->id]->status;
             $need->oid = $seller_order_did_maps[$need->id]->id;
         }
+        uasort($needs_list, function ($a, $b) {
+            return $a->oid > $b->oid ? -1 : 1;
+        });
         $this->response_success($needs_list);
     }
 
