@@ -66,6 +66,8 @@ class Seller extends Api_Controller {
         $data['did'] = $did;
         $data['uid'] = $uid;
         $data['sid'] = $sid;
+        $data['price'] = $needs->price;
+        $data['price_seller'] = $needs->price * 1.1;
         $this->Needs_model->update_by_where(['id' => $did], ['status' => 1]);
         $result = $this->Seller_order_model->add($data);
         if ($result) {
