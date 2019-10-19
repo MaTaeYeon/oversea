@@ -69,6 +69,7 @@ class Seller extends Api_Controller {
         $data['did'] = $did;
         $data['uid'] = $uid;
         $data['sid'] = $sid;
+        $data['status'] = 1;
         $data['price'] = $needs->price;
         $data['price_seller'] = $needs->price * 1.1;
         $this->Needs_model->update_by_where(['id' => $did], ['status' => 1]);
