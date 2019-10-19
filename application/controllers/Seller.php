@@ -12,8 +12,6 @@ class Seller extends Api_Controller {
     }
 
     public function get_my_order(){
-        ini_set("display_errors", "On");
-        ini_set("error_reporting", E_ALL);
         $uid = $this->get_params("uid");
         $status = $this->get_params("status", 0);
         $this->load->model("Seller_order_model");
@@ -21,7 +19,7 @@ class Seller extends Api_Controller {
         $this->load->model("User_model");
         $seller_order_list = $this->Seller_order_model->list_by_uid_status($uid, $status);
         $dids = $this->result_to_array($seller_order_list, "did");
-        $uids = array_merge($this->result_to_array($seller_order_list, "uid"), $this->result_to_array($seller_order_list, "sid"))
+        $uids = array_merge($this->result_to_array($seller_order_list, "uid"), $this->result_to_array($seller_order_list, "sid"));
         if (empty($dids)) {
             $this->response_success([]);
         }
