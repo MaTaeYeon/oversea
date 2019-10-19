@@ -25,4 +25,8 @@ class Needs_model extends BB_Model {
         return $this->execute('SELECT * FROM ' . $this->get_table_name() . ' WHERE `location` = ' . $id);
     }
 
+    public function get_my_needs($uid){
+        return $this->execute('SELECT p1.*,p3.name,p3.avatar FROM needs p1 left join seller_order p2 on p1.id= p2.did left join user p3 on p2.sid = p3.id WHERE p1.uid = ' . $uid);
+    }
+
 }

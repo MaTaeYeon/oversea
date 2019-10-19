@@ -69,7 +69,7 @@ class Needs extends Api_Controller {
     public function get_myneeds(){
         $uid = $this->get_params("uid");
         $this->load->model("Needs_model");
-        $ret = $this->Needs_model->list_by_uids([$uid]);
+        $ret = $this->Needs_model->get_my_needs($uid);
         $this->response_success($ret);
     }
 
