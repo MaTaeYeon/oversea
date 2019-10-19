@@ -17,7 +17,7 @@ class Needs extends Api_Controller {
     public function post_need(){
         $data["title"] = $this->post_params("title","标题");
         $data["location"] = $this->post_params("location",0);
-        $data["channel"] = $this->post_params("channel",0);
+        $data["channel"] = $this->post_params("channel","");
         $data["need_invoice"] = $this->post_params("need_invoice",0);
         $data["postage_commitment"] = $this->post_params("postage_commitment",0);
         $data["closing_date"] = $this->post_params("closing_date",0);
@@ -52,6 +52,19 @@ class Needs extends Api_Controller {
     public function get_all(){
         $this->load->model("Needs_model");
         $ret = $this->Needs_model->get_all();
+
+        foreach ($ret as $item) {
+            if($item->location == "美国"){
+                $item->icon = "http://b0.hucdn.com/img/country_new/ct_24.png";
+            }elseif($item->location == "日本"){
+                $item->icon = "http://b0.hucdn.com/img/country_new/ct_29.png";
+            }elseif($item->location == "奥地利"){
+                $item->icon = "http://b0.hucdn.com/img/country_new/ct_3.png";
+            }else{
+                $item->icon = "";
+            }
+        }
+
         $this->response_success($ret);
     }
 
@@ -62,6 +75,17 @@ class Needs extends Api_Controller {
         $location = $this->get_params("location");
         $this->load->model("Needs_model");
         $ret = $this->Needs_model->get_by_location($location);
+        foreach ($ret as $item) {
+            if($item->location == "美国"){
+                $item->icon = "http://b0.hucdn.com/img/country_new/ct_24.png";
+            }elseif($item->location == "日本"){
+                $item->icon = "http://b0.hucdn.com/img/country_new/ct_29.png";
+            }elseif($item->location == "奥地利"){
+                $item->icon = "http://b0.hucdn.com/img/country_new/ct_3.png";
+            }else{
+                $item->icon = "";
+            }
+        }
         $this->response_success($ret);
     }
 
@@ -72,6 +96,17 @@ class Needs extends Api_Controller {
         $uid = $this->get_params("uid");
         $this->load->model("Needs_model");
         $ret = $this->Needs_model->get_my_needs($uid);
+        foreach ($ret as $item) {
+            if($item->location == "美国"){
+                $item->icon = "http://b0.hucdn.com/img/country_new/ct_24.png";
+            }elseif($item->location == "日本"){
+                $item->icon = "http://b0.hucdn.com/img/country_new/ct_29.png";
+            }elseif($item->location == "奥地利"){
+                $item->icon = "http://b0.hucdn.com/img/country_new/ct_3.png";
+            }else{
+                $item->icon = "";
+            }
+        }
         $this->response_success($ret);
     }
 
