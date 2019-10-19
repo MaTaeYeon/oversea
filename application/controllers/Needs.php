@@ -11,6 +11,9 @@ class Needs extends Api_Controller {
         parent::__construct();
     }
 
+    /**
+     * 需求提交接口
+     */
     public function post_need(){
         $data["title"] = $this->post_params("title","标题");
         $data["location"] = $this->post_params("location",0);
@@ -23,12 +26,17 @@ class Needs extends Api_Controller {
         $data["pic"] = $this->post_params("pic","");
         $data["spec"] = $this->post_params("spec","");
 
+        $data["closing_date"] = time();
+
         $this->load->model("Needs_model");
         $ret = $this->Needs_model->add($data);
         $this->response_success($ret);
 
     }
 
+    /**
+     * 需求详情
+     */
     public function get_one(){
         $id = $this->get_params("id");
         $this->load->model("Needs_model");
@@ -52,6 +60,16 @@ class Needs extends Api_Controller {
         $location = $this->get_params("location");
         $this->load->model("Needs_model");
         $ret = $this->Needs_model->get_by_location($location);
+        $this->response_success($ret);
+    }
+
+    /**
+     * 个人发布需求列表
+     */
+    public function get_myneeds(){
+        $uid = $this->get_params("uid");
+        $this->load->model("Needs_model");
+        $ret = $this->Needs_model->list_by_uids([$uid]);
         $this->response_success($ret);
     }
 
