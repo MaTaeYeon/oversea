@@ -42,5 +42,21 @@ class Seller extends Api_Controller {
         $this->response_success($seller_order_list);
     }
 
+    public function accept_needs() {
+        $did = $this->get_params("did");
+        $uid = $this->get_params('uid');
+        $sid = $this->get_params("sid");
+        $this->load->model("Seller_order_model");
 
+        $data = array();
+        $data['did'] = $did;
+        $data['uid'] = $uid;
+        $data['sid'] = $sid;
+        $result = $this->Seller_order_model->add($data);
+        if ($result) {
+            $this->response_success(null, "接单成功");
+        } else {
+            $this->response_success(null, "接单失败");
+        }
+    }
 }
