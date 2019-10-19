@@ -146,40 +146,33 @@ class CI_Controller {
         return [$page, $page_size];
     }
 
-    function response_list($convert_data, $count = 10, $message = "", $code = 0) {
-        $data = [];
-        $data['code'] = $code;
-        $data['msg'] = $message;
-        $data['count'] = $count;
-        $data['data'] = $convert_data;
-        echo json_encode($data);
-        exit();
-    }
-
     function response_json($data, $success = FALSE, $message = "") {
+        header("content:application/json;chartset=uft-8");
         $obj = new stdClass();
         $obj->success = $success;
         $obj->message = $message;
         $obj->data = $data;
-        echo json_encode($data);
+        echo json_encode($obj);
         exit();
     }
 
     function response_success($data, $message = "") {
+        header("content:application/json;chartset=uft-8");
         $obj = new stdClass();
         $obj->success = TRUE;
         $obj->message = $message;
         $obj->data = $data;
-        echo json_encode($data);
+        echo json_encode($obj);
         exit();
     }
 
     function response_error($message = "", $data = []) {
+        header("content:application/json;chartset=uft-8");
         $obj = new stdClass();
         $obj->success = FALSE;
         $obj->message = $message;
         $obj->data = $data;
-        echo json_encode($data);
+        echo json_encode($obj);
         exit();
     }
 }
