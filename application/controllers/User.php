@@ -5,7 +5,7 @@
  * Date: 2019/10/19
  * Time: 13:51
  */
-class Seller extends Api_Controller
+class User extends Api_Controller
 {
 
     public function __construct()
