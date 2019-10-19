@@ -34,4 +34,11 @@ class Needs extends Api_Controller {
         $this->response_success($ret);
     }
 
+    public function search(){
+        $location = $this->get_params("location");
+        $this->load->model("Needs_model");
+        $ret = $this->Needs_model->get_by_location($location);
+        $this->response_success($ret);
+    }
+
 }
