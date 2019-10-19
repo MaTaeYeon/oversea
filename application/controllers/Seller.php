@@ -41,6 +41,7 @@ class Seller extends Api_Controller {
             if (isset($user_maps[$seller_order->sid])) {
                 $need->seller = $user_maps[$seller_order->sid];
             }
+            $need->price_seller = $seller_order_did_maps[$need->id]->price_seller;
         }
         $this->response_success($needs_list);
     }
