@@ -39,7 +39,7 @@ class Seller extends Api_Controller {
                 $need->seller = $user_maps[$seller_order->sid];
             }
         }
-        $this->response_success($seller_order_list);
+        $this->response_success($needs_list);
     }
 
     public function accept_needs() {
