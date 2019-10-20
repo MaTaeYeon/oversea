@@ -27,6 +27,8 @@ class Needs extends Api_Controller {
         $data["spec"] = $this->post_params("spec","");
         $data["closing_date"] = $this->post_params("closing_date","");
         $data["uid"] = $this->post_params("uid","");
+
+        $data["credit"] = rand(50,150);
         $data["create"] = time();
 
         $this->load->model("Needs_model");
