@@ -45,7 +45,9 @@ class Seller extends Api_Controller {
             $need->status = $seller_order_did_maps[$need->id]->status;
             $need->oid = $seller_order_did_maps[$need->id]->id;
         }
-        $this->response_success($needs_list);
+        $needs_list = $this->result_to_map($needs_list, 'oid');
+        ksort($needs_list);
+        $this->response_success(array_reverse($needs_list));
     }
 
     /**
