@@ -59,13 +59,17 @@ class Seller extends Api_Controller {
         $sid = $this->get_params("sid");
         $this->load->model("Seller_order_model");
         $this->load->model("Needs_model");
+        $this->load->model("User_model");
 
         $needs = $this->Needs_model->get_by_id($did);
-        if (empty($needs)) {
+        $user = $this->User_model->get_by_id($uid);
+        if (empty($user)) {
+            $this->response_error("用户不存在");
+        } else if (empty($needs)) {
             $this->response_error("需求不存在");
         }
-        if ($needs->credit >= 100) {
-            //$this->response_error("信誉分不满足，此需求信誉分要求达到" . $needs->credit);
+        if ($needs->credit > $user->credit) {
+            $this->response_error("信誉分不满足，此需求信誉分要求达到" . $needs->credit . ",当前信誉分" . $user->credit);
         }
         $data = array();
         $data['did'] = $did;
