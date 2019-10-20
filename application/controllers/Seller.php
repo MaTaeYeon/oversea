@@ -48,7 +48,7 @@ class Seller extends Api_Controller {
         uasort($needs_list, function ($a, $b) {
             return $a->oid > $b->oid ? -1 : 1;
         });
-        $this->response_success($needs_list);
+        $this->response_success((array)$needs_list);
     }
 
     /**
