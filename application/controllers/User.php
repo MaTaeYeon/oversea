@@ -31,6 +31,8 @@ class User extends Api_Controller
         }
         $user->order_num = $this->Seller_order_model->count_by_where(['sid' => $uid]);
         $user->needs_num = $this->Needs_model->count_by_where(['uid' => $uid]);
+        $user->good = rand(5000, 10000);
+        $user->fans = rand(500, 1000);
         $this->response_success($user);
     }
 
